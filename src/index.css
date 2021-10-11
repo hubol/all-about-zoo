@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: sans-serif;
+    height: 100%;
+    overflow: hidden;
+}
+
+#gameCanvas {
+    /* see: http://jsfiddle.net/namuol/VAXrL/1459/ */
+    image-rendering: -moz-crisp-edges;
+    image-rendering: pixelated;
+
+    box-shadow: 3vmin 3vmin #006060;
+}
+
+#startButton {
+    background-color: #C0C0C0;
+    color: black;
+    appearance: unset;
+    display: inline-block;
+    font-weight: bold;
+    max-width: 80vw;
+    font-size: 8vmin;
+    padding: .25em .33em;
+    cursor: pointer;
+    border: 0.1875em outset #E0E0E0;
+    outline: 0;
+
+    box-shadow: 3vmin 3vmin #006060;
+}
+
+#startButton:hover {
+    filter: brightness(1.025);
+}
+
+#startButton:active {
+    filter: none;
+    border-style: inset;
+    text-indent: 0.1em;
+    box-shadow: 1.5vmin 1.5vmin #006060;
+    transform: translate(1.5vmin, 1.5vmin);
+}
+
+body {
+    background-color: #008080;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+noscript {
+    font-size: 4vw;
+    font-weight: bold;
+    background-color: #d05050;
+    color: #f0f0d0;
+    padding: .1em .2em;
+}

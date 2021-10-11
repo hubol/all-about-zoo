@@ -1,0 +1,20 @@
+{
+  "name": "all-about-zoo",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "serve": "parcel src/index.html --open",
+    "build": "parcel build --public-url ./ src/index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pissant": "^0.1.2",
+    "pixi.js-legacy": "^6.1.3"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5",
+    "typescript": "^4.4.3"
+  }
+}
