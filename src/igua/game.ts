@@ -1,5 +1,5 @@
 import {Container} from "pixi.js";
-import {BaseTexture, MIPMAP_MODES, Sprite, Texture, VideoResource } from "pixi.js-legacy";
+import {BaseTexture, MIPMAP_MODES, Sprite, Texture, VideoResource} from "pixi.js-legacy";
 import {AsshatTicker} from "../utils/asshatTicker";
 import {advanceKeyListener, startKeyListener} from "../utils/browser/key";
 import {createApplication} from "../utils/pixi/createApplication";
@@ -44,11 +44,21 @@ export async function createGame()
     }));
 }
 
+async function makeMediaTexture() {
+    try
+    {
+        const element = await makeUserMediaVideoElement();
+        const res = new VideoResource(element);
+        const baseTexture = new BaseTexture(res, {mipmap: MIPMAP_MODES.OFF});
+        return new Texture(baseTexture);
+    }
+    catch (e) {
+        return textures.Dummy;
+    }
+}
+
 async function makeMediaSprite() {
-    const element = await makeUserMediaVideoElement();
-    const res = new VideoResource(element);
-    const baseTexture = new BaseTexture(res, { mipmap: MIPMAP_MODES.OFF });
-    const mediaTexture = new Texture(baseTexture);
+    const mediaTexture = await makeMediaTexture();
     return new Sprite(mediaTexture);
 }
 
