@@ -8,7 +8,8 @@ import {environment} from "./environment";
 import {make2dCanvasSink} from "../utils/browser/make2dCanvasSink";
 import {textures} from "../textures";
 import {packing} from "../scenes/packing";
-import {RGBSplitFilter} from "pixi-filters";
+import {music} from "../music";
+import {showLyrics} from "../showLyrics";
 
 export let scene: Container;
 export let canvas: HTMLCanvasElement;
@@ -32,6 +33,8 @@ export async function createGame()
         scene.ticker.update();
     });
 
+    await music.play();
+    setTimeout(showLyrics);
     packing();
 }
 
