@@ -28,7 +28,7 @@ function makeDoUpscale(canvas: HTMLCanvasElement)
             ? (availableWidth / canvas.width)
             : (availableHeight / canvas.height);
 
-        const scale = getSteppedScale(linearScale);
+        const scale = linearScale;
 
         const width = scale * canvas.width;
         const height = scale * canvas.height;

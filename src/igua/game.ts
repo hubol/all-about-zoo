@@ -6,6 +6,8 @@ import {createApplication} from "../utils/pixi/createApplication";
 import {upscaleGameCanvas} from "./upscaleGameCanvas";
 import {environment} from "./environment";
 import {make2dCanvasSink} from "../utils/browser/make2dCanvasSink";
+import {RGBSplitFilter} from "pixi-filters";
+import {textures} from "../textures";
 
 export let scene: Container;
 
@@ -28,7 +30,11 @@ export async function createGame()
 
     mediaSprite.anchor.x = 1;
     mediaSprite.scale.x *= -1;
+    mediaSprite.filters = [new RGBSplitFilter([-3, 0], [0, 3], [0, 0])];
     scene.addChild(mediaSprite);
+    const holeSprite = Sprite.from(textures.LunchFaceHole);
+    holeSprite.scale.set(0.6, 0.6);
+    scene.addChild(holeSprite);
 }
 
 async function makeMediaSprite() {

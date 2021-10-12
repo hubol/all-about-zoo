@@ -70,6 +70,7 @@
       "es2015.promise",
       "es2015.core",
       "es2015.collection",
+      "es2017",
       "es2019.array",
       "es2015.proxy"
     ]

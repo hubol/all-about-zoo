@@ -13,8 +13,9 @@ html {
     /* see: http://jsfiddle.net/namuol/VAXrL/1459/ */
     image-rendering: -moz-crisp-edges;
     image-rendering: pixelated;
+    border: solid 3vmin #E8E06B;
 
-    box-shadow: 3vmin 3vmin #006060;
+    /*box-shadow: 3vmin 3vmin #006060;*/
 }
 
 #startButton {
@@ -46,7 +47,7 @@ html {
 }
 
 body {
-    background-color: #008080;
+    background-color: #E2889B;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -59,4 +60,14 @@ noscript {
     background-color: #d05050;
     color: #f0f0d0;
     padding: .1em .2em;
+}
+
+#lyrics {
+    bottom: 1em;
+    font-size: 10vmin;
+    z-index: 100;
+    position: fixed;
+    color: white;
+    -webkit-text-stroke: 2px black;
+    -webkit-text-fill-color: white;
 }

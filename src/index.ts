@@ -2,16 +2,16 @@ import * as PIXI from "pixi.js";
 import {handleIguaPromiseRejection} from "./utils/rejection";
 import {handlePromiseCancellation} from "pissant";
 import {environment} from "./igua/environment";
+import {loadTextures} from "./textures";
 
 (PIXI.settings as any).ROUND_PIXELS = true;
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 
 async function initialize()
 {
-    // @ts-ignore
     require("./utils/extensions/**/*.*");
-    // @ts-ignore
-    setTimeout(require("./igua/game").createGame);
+    await loadTextures();
+    await require("./igua/game").createGame();
 }
 
 if (environment.isProduction && !environment.isElectron)

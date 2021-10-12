@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "pissant": "^0.1.2",
+    "pixi-filters": "^4.1.5",
     "pixi.js-legacy": "^6.1.3"
   },
   "devDependencies": {
