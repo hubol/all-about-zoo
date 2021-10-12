@@ -3,6 +3,7 @@ import {handleIguaPromiseRejection} from "./utils/rejection";
 import {handlePromiseCancellation} from "pissant";
 import {environment} from "./igua/environment";
 import {loadTextures} from "./textures";
+import {loadLabels} from "./loadLabels";
 
 (PIXI.settings as any).ROUND_PIXELS = true;
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
@@ -10,6 +11,7 @@ PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 async function initialize()
 {
     require("./utils/extensions/**/*.*");
+    await loadLabels();
     await loadTextures();
     await require("./igua/game").createGame();
 }
