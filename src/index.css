@@ -14,8 +14,8 @@ html {
     image-rendering: -moz-crisp-edges;
     image-rendering: pixelated;
     border: solid 3vmin #E8E06B;
-
-    /*box-shadow: 3vmin 3vmin #006060;*/
+    /*max-height: 70vh;*/
+    /*max-width: 95vw;*/
 }
 
 #startButton {
@@ -49,6 +49,7 @@ html {
 body {
     background-color: #E2889B;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100%;
@@ -63,11 +64,8 @@ noscript {
 }
 
 #lyrics {
-    bottom: 1em;
     font-size: 10vmin;
-    z-index: 100;
-    position: fixed;
     color: white;
-    -webkit-text-stroke: 2px black;
+    -webkit-text-stroke: 0.025em black;
     -webkit-text-fill-color: white;
 }

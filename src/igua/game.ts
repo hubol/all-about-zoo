@@ -8,6 +8,7 @@ import {environment} from "./environment";
 import {make2dCanvasSink} from "../utils/browser/make2dCanvasSink";
 import {RGBSplitFilter} from "pixi-filters";
 import {textures} from "../textures";
+import {now} from "../utils/now";
 
 export let scene: Container;
 
@@ -35,6 +36,12 @@ export async function createGame()
     const holeSprite = Sprite.from(textures.LunchFaceHole);
     holeSprite.scale.set(0.6, 0.6);
     scene.addChild(holeSprite);
+    scene.addChild(Sprite.from(textures.Apple).withStep(x => {
+        x.x++;
+        x.y++;
+        const f = Math.sin(now.s);
+        x.scale.set(f, f);
+    }));
 }
 
 async function makeMediaSprite() {

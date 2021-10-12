@@ -1,7 +1,8 @@
 import {Loader, Texture } from "pixi.js-legacy";
 
 const textureRequires = {
-    LunchFaceHole: require('./images/lunch face hole.png')
+    LunchFaceHole: require('./images/lunch face hole.png'),
+    Apple: require('./images/apple.png'),
 };
 
 type Key = keyof typeof textureRequires;

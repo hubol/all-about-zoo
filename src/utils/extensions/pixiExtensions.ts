@@ -19,7 +19,7 @@ declare module "@pixi/display" {
 
         rectangle: Rectangle;
 
-        withStep(step: () => void): this;
+        withStep(step: (self: this) => void): this;
 
         withAsync(async: PromiseFn): this;
 
@@ -166,6 +166,11 @@ DisplayObject.prototype.moveTowards = function (other, speed) {
 }
 
 DisplayObject.prototype.withStep = function (step) {
+    if (step.length === 1) {
+        const self = this;
+        const oldStep = step;
+        step = () => oldStep(self);
+    }
     return doNowOrOnAdded(this, () => this.ticker.add(step))
         .on("removed", () => this.ticker.remove(step));
 }
