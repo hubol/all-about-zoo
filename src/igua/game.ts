@@ -2,25 +2,28 @@ import {Container} from "pixi.js";
 import {BaseTexture, MIPMAP_MODES, Sprite, Texture, VideoResource} from "pixi.js-legacy";
 import {AsshatTicker} from "../utils/asshatTicker";
 import {advanceKeyListener, startKeyListener} from "../utils/browser/key";
-import {createApplication} from "../utils/pixi/createApplication";
+import {AsshatApplication, createApplication} from "../utils/pixi/createApplication";
 import {upscaleGameCanvas} from "./upscaleGameCanvas";
 import {environment} from "./environment";
 import {make2dCanvasSink} from "../utils/browser/make2dCanvasSink";
-import {RGBSplitFilter} from "pixi-filters";
 import {textures} from "../textures";
-import {now} from "../utils/now";
+import {packing} from "../scenes/packing";
+import {RGBSplitFilter} from "pixi-filters";
 
 export let scene: Container;
+export let canvas: HTMLCanvasElement;
+export let mediaTexture: Texture;
 
 export async function createGame()
 {
-    const mediaSprite = await makeMediaSprite();
-    const application = createApplication({width: mediaSprite.width, height: mediaSprite.height, targetFps: 60, showCursor: false});
+    mediaTexture = await makeMediaTexture();
+    const application = createApplication({width: mediaTexture.width, height: mediaTexture.height, targetFps: 60, showCursor: false});
     upscaleGameCanvas(addGameCanvasToDocument(application.canvasElement));
 
     application.ticker.start();
     application.stage.withTicker(new AsshatTicker());
     scene = application.stage;
+    canvas = application.canvasElement;
 
     startKeyListener();
 
@@ -29,19 +32,14 @@ export async function createGame()
         scene.ticker.update();
     });
 
+    packing();
+}
+
+export function makeFullMediaSprite() {
+    const mediaSprite = Sprite.from(mediaTexture);
     mediaSprite.anchor.x = 1;
     mediaSprite.scale.x *= -1;
-    mediaSprite.filters = [new RGBSplitFilter([-3, 0], [0, 3], [0, 0])];
-    scene.addChild(mediaSprite);
-    const holeSprite = Sprite.from(textures.LunchFaceHole);
-    holeSprite.scale.set(0.6, 0.6);
-    scene.addChild(holeSprite);
-    scene.addChild(Sprite.from(textures.Apple).withStep(x => {
-        x.x++;
-        x.y++;
-        const f = Math.sin(now.s);
-        x.scale.set(f, f);
-    }));
+    return scene.addChild(mediaSprite);
 }
 
 async function makeMediaTexture() {
@@ -53,13 +51,9 @@ async function makeMediaTexture() {
         return new Texture(baseTexture);
     }
     catch (e) {
+        console.error(e);
         return textures.Dummy;
     }
-}
-
-async function makeMediaSprite() {
-    const mediaTexture = await makeMediaTexture();
-    return new Sprite(mediaTexture);
 }
 
 async function makeUserMediaVideoElement() {
