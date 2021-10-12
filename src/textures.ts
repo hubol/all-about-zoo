@@ -1,11 +1,5 @@
-import {Loader, Texture } from "pixi.js-legacy";
-
-const textureRequires = {
-    LunchFaceHole: require('./images/lunch face hole.png'),
-    Apple: require('./images/apple.png'),
-    Dummy: require('./images/dummy.png'),
-    PurpleGuy: require('./images/purple guy.png'),
-};
+import {Loader, Texture} from "pixi.js-legacy";
+import {textureRequires} from "./textureRequires";
 
 type Key = keyof typeof textureRequires;
 
