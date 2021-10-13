@@ -1,7 +1,6 @@
 import * as PIXI from "pixi.js";
 import {handleIguaPromiseRejection} from "./utils/rejection";
 import {handlePromiseCancellation} from "pissant";
-import {environment} from "./igua/environment";
 import {loadTextures} from "./textures";
 import {loadLabels} from "./loadLabels";
 import {loadMusic} from "./music";
@@ -30,14 +29,16 @@ window.addEventListener("unhandledrejection", handlePromiseCancellation);
 
 function createStartGameButtonElement()
 {
-    const buttonElement = document.createElement("button");
-    buttonElement.id = "startButton";
-    buttonElement.textContent = "Start game";
-    buttonElement.onclick = () => {
-        document.body.removeChild(buttonElement);
-        setTimeout(initialize);
-    };
-    return buttonElement;
+    return new Promise<void>(resolve => {
+        const buttonElement = document.createElement("button");
+        buttonElement.id = "startButton";
+        buttonElement.textContent = "Start game";
+        buttonElement.onclick = () => {
+            document.body.removeChild(buttonElement);
+            resolve();
+        };
+        document.body.appendChild(buttonElement);
+    })
 }
 
 async function realInitialize() {
@@ -46,5 +47,6 @@ async function realInitialize() {
     await loadTextures();
     await loadMusic();
     await loadMediaTexture();
-    document.body.appendChild(createStartGameButtonElement());
+    await createStartGameButtonElement();
+    await initialize();
 }
