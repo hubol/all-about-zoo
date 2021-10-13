@@ -9,7 +9,7 @@ html {
     overflow: hidden;
 }
 
-#gameCanvas {
+#game_canvas {
     /* see: http://jsfiddle.net/namuol/VAXrL/1459/ */
     image-rendering: -moz-crisp-edges;
     image-rendering: pixelated;
@@ -17,7 +17,7 @@ html {
     margin-bottom: 3vmin;
 }
 
-#startButton {
+#start_button {
     background-color: #C0C0C0;
     color: black;
     appearance: unset;
@@ -28,25 +28,30 @@ html {
     padding: .25em .33em;
     cursor: pointer;
     border: 0.1875em outset #E0E0E0;
+    border-radius: 999px;
     outline: 0;
 
-    box-shadow: 3vmin 3vmin #006060;
+    box-shadow: 3vmin 3vmin #CC535C;
 }
 
-#startButton:hover {
+#start_button:hover {
     filter: brightness(1.025);
 }
 
-#startButton:active {
+#start_button:active {
     filter: none;
     border-style: inset;
     text-indent: 0.1em;
-    box-shadow: 1.5vmin 1.5vmin #006060;
+    box-shadow: 1.5vmin 1.5vmin #CC535C;
     transform: translate(1.5vmin, 1.5vmin);
 }
 
 body {
     background-color: #E2889B;
+    height: 100%;
+}
+
+section {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -71,7 +76,7 @@ noscript {
     -webkit-text-fill-color: white;
 }
 
-#lyricsContainer {
+#lyrics_container {
     flex-grow: 1;
     max-height: 30vh;
     display: flex;
@@ -80,4 +85,39 @@ noscript {
 
 .invisible {
     display: none;
+}
+
+#loading img {
+    max-width: 90vw;
+    height: 40vh;
+    animation: loading 1s infinite steps(2);
+    transform-origin: bottom;
+}
+
+#loading h1 {
+    margin-top: 0.3em;
+    text-align: center;
+    font-size: 15vmin;
+    color: white;
+    -webkit-text-stroke: 0.025em black;
+    -webkit-text-fill-color: white;
+}
+
+@keyframes loading {
+    0% {
+        transform: translate(-1vh, 0) rotate(3deg);
+        filter: drop-shadow(1vh 1vh #CC535C);
+    }
+    25% {
+        transform: translate(0, 1vh) rotate(-1deg);
+        filter: drop-shadow(1vh 1vh #CC535C);
+    }
+    50% {
+        transform: translate(0, 1vh) scale(1.2, 0.8) rotate(1deg);
+        filter: drop-shadow(1.5vh 1.5vh #CC535C);
+    }
+    75% {
+        transform: translate(1vh, -2vh) scale(0.95, 1.05) rotate(-1deg);
+        filter: drop-shadow(1vh 1vh #CC535C);
+    }
 }

@@ -17,10 +17,22 @@
 </head>
 
 <body>
-<div id="loading" class="invisible">Loading</div>
-<div id="lyricsContainer">
-    <p id="lyrics"></p>
-</div>
+    <section id="loading" class="invisible">
+        <img src="gumm.png" alt="Gumm character">
+        <h1>Loading...</h1>
+    </section>
+    <section id="start" class="invisible">
+        <button id="start_button">Start album</button>
+    </section>
+    <section id="fatal_error" class="invisible">
+        <h1>A fatal error occurred</h1>
+        <p id="fatal_error_message"></p>
+    </section>
+    <section id="game" class="invisible">
+        <div id="lyrics_container">
+            <p id="lyrics"></p>
+        </div>
+    </section>
     <noscript>JavaScript&trade; is required to play this game.</noscript>
 </body>
 

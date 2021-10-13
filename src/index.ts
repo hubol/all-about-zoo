@@ -5,6 +5,7 @@ import {loadTextures} from "./textures";
 import {loadLabels} from "./loadLabels";
 import {loadMusic} from "./music";
 import {loadMediaTexture} from "./mediaTexture";
+import {showSection} from "./showSection";
 
 (PIXI.settings as any).ROUND_PIXELS = true;
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
@@ -16,24 +17,25 @@ window.addEventListener("unhandledrejection", handlePromiseCancellation);
 
 function pushStartButton()
 {
-    return new Promise<void>(resolve => {
-        const buttonElement = document.createElement("button");
-        buttonElement.id = "startButton";
-        buttonElement.textContent = "Start game";
-        buttonElement.onclick = () => {
-            document.body.removeChild(buttonElement);
-            resolve();
-        };
-        document.body.appendChild(buttonElement);
-    })
+    return new Promise<void>(resolve =>
+        document.getElementById('start_button')!.onclick = () => resolve())
 }
 
 async function initialize() {
-    require("./utils/extensions/**/*.*");
-    await loadLabels();
-    await loadTextures();
-    await loadMusic();
-    await loadMediaTexture();
-    await pushStartButton();
-    await require("./igua/game").startGame();
+    try {
+        showSection('loading');
+        require("./utils/extensions/**/*.*");
+        await loadLabels();
+        await loadTextures();
+        await loadMusic();
+        await loadMediaTexture();
+        showSection('start');
+        await pushStartButton();
+        showSection('game');
+        await require("./igua/game").startGame();
+    }
+    catch (e) {
+        showSection('fatal_error');
+        document.getElementById('fatal_error_message')!.textContent = `${e}`;
+    }
 }

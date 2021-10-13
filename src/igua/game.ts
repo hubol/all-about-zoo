@@ -48,8 +48,8 @@ function addGameCanvasToDocument(element: HTMLCanvasElement)
     if (environment.isSafari)
         element = make2dCanvasSink(element);
 
-    element.id = "gameCanvas";
-    document.body.appendChild(element);
+    element.id = "game_canvas";
+    document.getElementById('game')!.appendChild(element);
 
     return element;
 }
