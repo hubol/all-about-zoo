@@ -7,9 +7,10 @@ import {
 import {Container, filters, Sprite} from "pixi.js-legacy";
 import {textures} from "../textures";
 import {now} from "../utils/now";
-import {canvas, makeFullMediaSprite, mediaTexture, scene} from "../igua/game";
+import {canvas, makeFullMediaSprite, scene} from "../igua/game";
 import {wait} from "pissant";
 import {lyric} from "../showLyrics";
+import {mediaTexture} from "../mediaTexture";
 
 export function packing() {
     const mediaSprite = makeFullMediaSprite();

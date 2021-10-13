@@ -5,23 +5,25 @@ import {environment} from "./igua/environment";
 import {loadTextures} from "./textures";
 import {loadLabels} from "./loadLabels";
 import {loadMusic} from "./music";
+import {loadMediaTexture} from "./mediaTexture";
 
 (PIXI.settings as any).ROUND_PIXELS = true;
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 
 async function initialize()
 {
-    require("./utils/extensions/**/*.*");
-    await loadLabels();
-    await loadTextures();
-    await loadMusic();
-    await require("./igua/game").createGame();
+    try {
+        await require("./igua/game").createGame();
+    }
+    catch (e) {
+        document.body.append(e.toString());
+    }
 }
 
-if (environment.isProduction && !environment.isElectron)
-    document.body.appendChild(createStartGameButtonElement());
-else
-    window.onload = initialize;
+// if (environment.isProduction && !environment.isElectron)
+//     document.body.appendChild(createStartGameButtonElement());
+// else
+    window.onload = realInitialize;
 
 window.addEventListener("unhandledrejection", handleIguaPromiseRejection);
 window.addEventListener("unhandledrejection", handlePromiseCancellation);
@@ -36,4 +38,13 @@ function createStartGameButtonElement()
         setTimeout(initialize);
     };
     return buttonElement;
+}
+
+async function realInitialize() {
+    require("./utils/extensions/**/*.*");
+    await loadLabels();
+    await loadTextures();
+    await loadMusic();
+    await loadMediaTexture();
+    document.body.appendChild(createStartGameButtonElement());
 }
