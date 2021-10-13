@@ -9,25 +9,12 @@ import {loadMediaTexture} from "./mediaTexture";
 (PIXI.settings as any).ROUND_PIXELS = true;
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 
-async function initialize()
-{
-    try {
-        await require("./igua/game").createGame();
-    }
-    catch (e) {
-        document.body.append(e.toString());
-    }
-}
-
-// if (environment.isProduction && !environment.isElectron)
-//     document.body.appendChild(createStartGameButtonElement());
-// else
-    window.onload = realInitialize;
+window.onload = initialize;
 
 window.addEventListener("unhandledrejection", handleIguaPromiseRejection);
 window.addEventListener("unhandledrejection", handlePromiseCancellation);
 
-function createStartGameButtonElement()
+function pushStartButton()
 {
     return new Promise<void>(resolve => {
         const buttonElement = document.createElement("button");
@@ -41,12 +28,12 @@ function createStartGameButtonElement()
     })
 }
 
-async function realInitialize() {
+async function initialize() {
     require("./utils/extensions/**/*.*");
     await loadLabels();
     await loadTextures();
     await loadMusic();
     await loadMediaTexture();
-    await createStartGameButtonElement();
-    await initialize();
+    await pushStartButton();
+    await require("./igua/game").startGame();
 }

@@ -14,7 +14,7 @@ import {mediaTexture} from "../mediaTexture";
 export let scene: Container;
 export let canvas: HTMLCanvasElement;
 
-export async function createGame()
+export async function startGame()
 {
     const application = createApplication({width: mediaTexture.width, height: mediaTexture.height, targetFps: 60, showCursor: false});
     upscaleGameCanvas(addGameCanvasToDocument(application.canvasElement));
