@@ -37,5 +37,6 @@ async function initialize() {
     catch (e) {
         showSection('fatal_error');
         document.getElementById('fatal_error_message')!.textContent = `${e}`;
+        throw e;
     }
 }

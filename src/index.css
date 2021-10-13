@@ -69,8 +69,8 @@ noscript {
 
 #lyrics {
     text-align: center;
-    font-size: 10vmin;
-    max-height: 30vh;
+    z-index: 100;
+    font-size: 9vmin;
     color: white;
     -webkit-text-stroke: 0.025em black;
     -webkit-text-fill-color: white;
@@ -78,7 +78,7 @@ noscript {
 
 #lyrics_container {
     flex-grow: 1;
-    max-height: 30vh;
+    max-height: 20vh;
     display: flex;
     align-items: center;
 }
