@@ -2,6 +2,7 @@ import {BaseTexture, MIPMAP_MODES, Texture, VideoResource} from "pixi.js-legacy"
 import {textures} from "./textures";
 
 export let mediaTexture: Texture;
+export let videoElement: HTMLVideoElement;
 
 export async function loadMediaTexture() {
     mediaTexture = await makeMediaTexture();
@@ -10,8 +11,8 @@ export async function loadMediaTexture() {
 async function makeMediaTexture() {
     try
     {
-        const element = await makeUserMediaVideoElement();
-        const res = new VideoResource(element);
+        videoElement = await makeUserMediaVideoElement();
+        const res = new VideoResource(videoElement);
         const baseTexture = new BaseTexture(res, {mipmap: MIPMAP_MODES.OFF});
         return new Texture(baseTexture);
     }

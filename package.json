@@ -10,6 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@tensorflow/tfjs-backend-cpu": "^3.9.0",
+    "@tensorflow/tfjs-core": "^3.9.0",
+    "face-api.js": "^0.22.2",
     "pissant": "^0.1.2",
     "pixi-filters": "^4.1.5",
     "pixi.js-legacy": "^6.1.3"
