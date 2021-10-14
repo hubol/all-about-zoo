@@ -7,7 +7,7 @@ import {loadLabels} from "./loadLabels";
 import {loadMusic} from "./music";
 import {loadMediaTexture} from "./mediaTexture";
 import {showSection} from "./showSection";
-import {stupid} from "./fuckyou";
+import {loadModel} from "./fuckyou";
 
 (PIXI.settings as any).ROUND_PIXELS = true;
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
@@ -31,7 +31,7 @@ async function initialize() {
         await loadTextures();
         await loadMusic();
         await loadMediaTexture();
-        await stupid();
+        await loadModel();
         showSection('start');
         await pushStartButton();
         showSection('game');

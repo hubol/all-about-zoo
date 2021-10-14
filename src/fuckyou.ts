@@ -1,41 +1,39 @@
-import {detectSingleFace, fetchJson, nets, TinyFaceDetectorOptions} from "face-api.js";
-// import * as faceapi from "face-api.js";
+import {detectSingleFace, FaceDetection, nets, Rect, TinyFaceDetectorOptions, TinyYolov2SizeType} from "face-api.js";
 import {videoElement} from "./mediaTexture";
-import {env} from "@tensorflow/tfjs-core";
 import {loadWeightsAsArrayBuffer, weightsLoaderFactory} from "@tensorflow/tfjs-core/dist/io/weights_loader";
 
-export async function stupid() {
-    const manifestUri = require('./face/tiny_face_detector_model-weights_manifest.json');
+export async function loadModel() {
+    const manifestJson = require('./face/tiny_face_detector_model-weights_manifest.json');
     const weightUri = require('./face/tiny_face_detector_model-shard1.bin');
-    console.log(weightUri);
-    //
-    const manifest = manifestUri;
-    const fu = weightUri.lastIndexOf('/');
-    const [directory, shard] = fu < 1 ? ['/', weightUri.replace('/', '')] : split(weightUri, fu);
-    console.log(directory, shard);
-    // env().registerFlag('DEBUG', () => false);
-    // env().registerFlag('IS_NODE', () => false);
-    // env().set('DEBUG', false);
+
     const fetchWeights = () =>
         loadWeightsAsArrayBuffer([weightUri], { fetchFunc: fetch });
     const loadWeights = weightsLoaderFactory(fetchWeights);
 
-    const a = await loadWeights(manifest);
-    nets.tinyFaceDetector.loadFromWeightMap(a as any);
-    //
-    console.log(a);
+    const weights = await loadWeights(manifestJson);
+    nets.tinyFaceDetector.loadFromWeightMap(weights as any);
+
+    try {
+        await detectSingleFace(videoElement, new TinyFaceDetectorOptions());
+    }
+    catch (e) {
+
+    }
 }
 
-function split(value: string, index: number) {
-    return [value.substring(0, index) ,value.substring(index)];
-}
+export let face = new FaceDetection(1, new Rect(0, 0, 128, 128), { width: 128, height: 128 });
+export let flippedFace = new FaceDetection(1, new Rect(0, 0, 128, 128), { width: 128, height: 128 });
 
-export async function wtf() {
+export async function detectFace() {
     if (!videoElement)
         return; // TODO
-    const options = new TinyFaceDetectorOptions();
-    const face = await detectSingleFace(videoElement, options);
-    if (!face)
+    const options = new TinyFaceDetectorOptions({ inputSize: TinyYolov2SizeType.XS });
+    const singleFace = await detectSingleFace(videoElement, options);
+    if (!singleFace)
         return;
-    console.log(face.box.x);
+    flippedFace = singleFace;
+    face = new FaceDetection(
+        singleFace.score,
+        new Rect(1 - singleFace.relativeBox.x - singleFace.relativeBox.width, singleFace.relativeBox.y, singleFace.relativeBox.width, singleFace.relativeBox.height),
+        singleFace.imageDims);
 }
