@@ -5,4 +5,5 @@ export const textureRequires = {
     PurpleGuy: require('./images/purple guy.png'),
     CardboardBox: require('./images/cardboard box.png'),
     Heart: require('./images/heart.png'),
+    Flower: require('./images/flower.png'),
 };
