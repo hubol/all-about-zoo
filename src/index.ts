@@ -1,4 +1,3 @@
-import * as whatever from "@tensorflow/tfjs-backend-cpu";
 import * as PIXI from "pixi.js";
 import {handleIguaPromiseRejection} from "./utils/rejection";
 import {handlePromiseCancellation} from "pissant";
@@ -7,7 +6,7 @@ import {loadLabels} from "./loadLabels";
 import {loadMusic} from "./music";
 import {loadMediaTexture} from "./mediaTexture";
 import {showSection} from "./showSection";
-import {loadModel} from "./fuckyou";
+import {faceDetectionWorker} from "./faceDetectionWorkerInterface";
 
 (PIXI.settings as any).ROUND_PIXELS = true;
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
@@ -31,7 +30,7 @@ async function initialize() {
         await loadTextures();
         await loadMusic();
         await loadMediaTexture();
-        await loadModel();
+        await faceDetectionWorker.loadModel();
         showSection('start');
         await pushStartButton();
         showSection('game');

@@ -11,7 +11,7 @@ import {canvas, makeFullMediaSprite, scene} from "../igua/game";
 import {wait} from "pissant";
 import {lyric} from "../showLyrics";
 import {mediaTexture} from "../mediaTexture";
-import {face} from "../fuckyou";
+import {face} from "../face";
 
 export function packing() {
     const mediaSprite = makeFullMediaSprite();
@@ -75,5 +75,5 @@ export function packing() {
     })
     scene.addChild(bouncer);
 
-    scene.addChild(Sprite.from(textures.Apple).withStep(x => x.at(face.box)));
+    scene.addChild(Sprite.from(textures.Apple).withStep(x => x.at(face)));
 }

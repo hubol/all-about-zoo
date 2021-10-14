@@ -10,7 +10,7 @@ import {packing} from "../scenes/packing";
 import {music} from "../music";
 import {showLyrics} from "../showLyrics";
 import {mediaTexture} from "../mediaTexture";
-import {detectFace} from "../fuckyou";
+import {publishFaceDetectionForever} from "../face";
 
 export let scene: Container;
 export let canvas: HTMLCanvasElement;
@@ -34,7 +34,7 @@ export async function startGame()
 
     await music.play();
     setTimeout(showLyrics);
-    setInterval(detectFace, 125);
+    setTimeout(publishFaceDetectionForever, 67);
     packing();
 }
 
