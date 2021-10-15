@@ -6,4 +6,7 @@ export const textureRequires = {
     CardboardBox: require('./images/cardboard box.png'),
     Heart: require('./images/heart.png'),
     Flower: require('./images/flower.png'),
+    Monkey: require('./images/monkey.png'),
+    Elephant: require('./images/elephant.png'),
+    Cloud: require('./images/cloud.png'),
 };

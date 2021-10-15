@@ -11,6 +11,7 @@ import {music} from "../music";
 import {showLyrics} from "../showLyrics";
 import {mediaTexture} from "../mediaTexture";
 import {detectFaceForever} from "../faceDetection";
+import {elephants} from "../scenes/elephants";
 
 export let application: AsshatApplication;
 export let scene: Container;
@@ -42,7 +43,8 @@ export async function startGame()
     await music.play();
     setTimeout(showLyrics);
     setTimeout(detectFaceForever)
-    packing();
+    // packing();
+    elephants();
 }
 
 export function makeFullMediaSprite() {
