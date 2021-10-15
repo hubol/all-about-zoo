@@ -40,9 +40,9 @@ export async function startGame()
         application.stage.ticker.update();
     });
 
-    await music.play();
     setTimeout(showLyrics);
     setTimeout(detectFaceForever)
+    setTimeout(async () => await music.play(), 125);
     // packing();
     elephants();
 }

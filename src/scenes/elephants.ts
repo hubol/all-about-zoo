@@ -40,6 +40,7 @@ export function elephants() {
 
         sprites.forEach(x => {
             x.moveTowards({ x: canvas.width * (.1 + Math.random() * .8), y: canvas.height * (.1 + Math.random() * .8) }, Math.random() * 0.125);
+            x.alpha = Math.max(1 - ((x.y - 256) / canvas.height), 0.2);
             if (distance(x, center) < radius) {
                 if (x.x < center.x)
                     x.x -= speed;
@@ -58,9 +59,10 @@ export function elephants() {
     }
 
     function elephant() {
+        const seed = Math.random() * Math.PI * 2;
         const sprite = Sprite.from(textures.Elephant).withStep(() => {
             sprite.x -= 0.5;
-            sprite.angle = Math.round(Math.sin(now.s * 3) * 2) * 3;
+            sprite.angle = Math.round(Math.sin(now.s * 3 + seed) * 2) * 3;
             sprite.y = terrain(sprite.x);
             if (sprite.x < -sprite.width)
                 sprite.x = canvas.width + sprite.width;
@@ -89,7 +91,7 @@ export function elephants() {
     clouds.addChild(...sprites);
 
     const foreground = new Container();
-    foreground.addChild(earth, elephant());
+    foreground.addChild(earth, elephant(), elephant().at(canvas.width / 2, 0));
 
     scene.addChild(foreground, clouds);
 }
