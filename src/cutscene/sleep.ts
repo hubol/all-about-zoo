@@ -1,9 +1,9 @@
-import {game} from "../igua/game";
 import {wait} from "./wait";
+import {application} from "../igua/game";
 
 export function sleep(ms: number)
 {
-    let ticksUntilResolve = (ms / 1000) * game.applicationTicker.maxFPS;
+    let ticksUntilResolve = (ms / 1000) * application.ticker.maxFPS;
 
     return wait(() => --ticksUntilResolve <= 0);
 }

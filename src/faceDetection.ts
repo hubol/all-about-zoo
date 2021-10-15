@@ -1,6 +1,7 @@
 import {detectSingleFace, FaceDetection, nets, Rect, TinyFaceDetectorOptions, TinyYolov2SizeType} from "face-api.js";
 import {videoElement} from "./mediaTexture";
 import {loadWeightsAsArrayBuffer, weightsLoaderFactory} from "@tensorflow/tfjs-core/dist/io/weights_loader";
+import {sleep} from "./cutscene/sleep";
 
 export async function loadModel() {
     const manifestJson = require('./face/tiny_face_detector_model-weights_manifest.json');
@@ -24,7 +25,7 @@ export async function loadModel() {
 export let face = new FaceDetection(1, new Rect(0, 0, 128, 128), { width: 128, height: 128 });
 export let flippedFace = new FaceDetection(1, new Rect(0, 0, 128, 128), { width: 128, height: 128 });
 
-export async function detectFace() {
+async function detectFace() {
     if (!videoElement)
         return; // TODO
     const options = new TinyFaceDetectorOptions({ inputSize: TinyYolov2SizeType.XS });
@@ -36,4 +37,11 @@ export async function detectFace() {
         singleFace.score,
         new Rect(1 - singleFace.relativeBox.x - singleFace.relativeBox.width, singleFace.relativeBox.y, singleFace.relativeBox.width, singleFace.relativeBox.height),
         singleFace.imageDims);
+}
+
+export async function detectFaceForever() {
+    while (true) {
+        await detectFace();
+        await sleep(125);
+    }
 }

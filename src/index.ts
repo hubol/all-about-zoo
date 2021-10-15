@@ -1,13 +1,17 @@
+import "zone.js";
+
+Zone[Zone.__symbol__('ignoreConsoleErrorUncaughtError')] = true;
+
 import * as whatever from "@tensorflow/tfjs-backend-cpu";
 import * as PIXI from "pixi.js";
 import {handleIguaPromiseRejection} from "./utils/rejection";
-import {handlePromiseCancellation} from "pissant";
 import {loadTextures} from "./textures";
 import {loadLabels} from "./loadLabels";
 import {loadMusic} from "./music";
 import {loadMediaTexture} from "./mediaTexture";
 import {showSection} from "./showSection";
-import {loadModel} from "./fuckyou";
+import {loadModel} from "./faceDetection";
+import {handlePromiseCancellation} from "./utils/pissant/cancellationToken";
 
 (PIXI.settings as any).ROUND_PIXELS = true;
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;

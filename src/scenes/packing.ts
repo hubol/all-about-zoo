@@ -8,11 +8,11 @@ import {Container, filters, Sprite} from "pixi.js-legacy";
 import {textures} from "../textures";
 import {now} from "../utils/now";
 import {canvas, makeFullMediaSprite, scene} from "../igua/game";
-import {wait} from "pissant";
 import {lyric} from "../showLyrics";
 import {mediaTexture} from "../mediaTexture";
-import {face} from "../fuckyou";
+import {face} from "../faceDetection";
 import { lerp } from "../utils/math/number";
+import {wait} from "../cutscene/wait";
 
 export function packing() {
     const mediaSprite = makeFullMediaSprite();
@@ -68,7 +68,7 @@ export function packing() {
         hueShift.hue((now.s * 360) % 360, false);
     })
 
-    setTimeout(async () => {
+    scene.withAsync(async () => {
         await wait(() => lyric.indexOf('box') !== -1);
         const box = Sprite.from(textures.CardboardBox).at(canvas.width / 2, canvas.height / 2);
         box.scale.set(0, 0);

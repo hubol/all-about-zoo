@@ -1,6 +1,6 @@
 import {lerp, Vector} from "../utils/math/vector";
 import {wait} from "./wait";
-import {game} from "../igua/game";
+import {application} from "../igua/game";
 
 export function move(vector: Vector)
 {
@@ -30,7 +30,7 @@ class Move
         const speed = getVector(arguments);
 
         return moveOver(async ms => {
-            let ticksUntilResolve = (ms / 1000) * game.applicationTicker.maxFPS;
+            let ticksUntilResolve = (ms / 1000) * application.ticker.maxFPS;
 
             return await wait(() => {
                     this._vector.x += speed.x;
@@ -52,7 +52,7 @@ class Move
 
             return await wait(() => {
                     currentTick++;
-                    const currentMs = (currentTick * 1000) / game.applicationTicker.maxFPS;
+                    const currentMs = (currentTick * 1000) / application.ticker.maxFPS;
                     const factor = Math.min(currentMs / ms, 1);
 
                     this._vector.x = start.x;

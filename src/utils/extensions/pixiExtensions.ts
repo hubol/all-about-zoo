@@ -1,9 +1,9 @@
 import {moveTowards, Vector} from "../math/vector";
-import {CancellationToken} from "pissant";
 import {areRectanglesOverlapping, normalizeRectangle, Rectangle, rectangle as createRectangle} from "../math/rectangle";
 import {AsshatTicker} from "../asshatTicker";
 import {PromiseFn, runInIguaZone} from "../../cutscene/runInIguaZone";
 import {DisplayObject, Container, SCALE_MODES, Transform} from "pixi.js-legacy";
+import {CancellationToken} from "../pissant/cancellationToken";
 
 declare module "@pixi/display" {
     interface DisplayObject {
