@@ -6,8 +6,7 @@ import {AsshatApplication, createApplication} from "../utils/pixi/createApplicat
 import {upscaleGameCanvas} from "./upscaleGameCanvas";
 import {environment} from "./environment";
 import {make2dCanvasSink} from "../utils/browser/make2dCanvasSink";
-import {packing} from "../scenes/packing";
-import {music} from "../music";
+import {startMusic} from "../music";
 import {showLyrics} from "../showLyrics";
 import {mediaTexture} from "../mediaTexture";
 import {detectFaceForever} from "../faceDetection";
@@ -42,7 +41,7 @@ export async function startGame()
 
     setTimeout(showLyrics);
     setTimeout(detectFaceForever)
-    setTimeout(async () => await music.play(), 125);
+    setTimeout(startMusic, 125);
     // packing();
     elephants();
 }
