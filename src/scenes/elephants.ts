@@ -4,18 +4,15 @@ import {
 import {canvas, makeFullMediaSprite, scene} from "../igua/game";
 import {range} from "../utils/range";
 import {textures} from "../textures";
-import {BLEND_MODES, Container, Graphics, Sprite } from "pixi.js-legacy";
+import {Container, Graphics, Sprite } from "pixi.js-legacy";
 import {face} from "../faceDetection";
 import {distance} from "../utils/math/vector";
 import {now} from "../utils/now";
 
 export function elephants() {
-    const mediaSprite = makeFullMediaSprite();
-    // mediaSprite.filters = [new AdjustmentFilter({ saturation: 2, brightness: 1, contrast: 0.3 })];
+    makeFullMediaSprite();
 
-    const sky = new Graphics().beginFill(0xA3C9F7).drawRect(0, 0, canvas.width, canvas.height);
-    sky.alpha = 0.6;
-    sky.blendMode = BLEND_MODES.HUE;
+    const sky = new Graphics();
     scene.addChild(sky);
 
     const sprites = range(30).map(() => {
@@ -27,13 +24,20 @@ export function elephants() {
     });
 
     const speed = 2;
-    const halfSpeed = speed / 2;
 
     const clouds = new Container();
 
     scene.withStep(() => {
         const center = { x: face.box.x + face.box.width / 2, y: face.box.y + face.box.height / 2};
-        const radius = (face.box.width + face.box.height) / 4;
+        const radius = (Math.abs(face.box.width) + Math.abs(face.box.height)) / 4;
+
+        sky
+            .clear()
+            .beginFill(0xA3C9F7)
+            .drawRect(0, 0, canvas.width, canvas.height)
+            .beginHole()
+            .drawCircle(center.x, center.y, radius);
+
         sprites.forEach(x => {
             x.moveTowards({ x: canvas.width * (.1 + Math.random() * .8), y: canvas.height * (.1 + Math.random() * .8) }, Math.random() * 0.125);
             if (distance(x, center) < radius) {
