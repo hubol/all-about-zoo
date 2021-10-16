@@ -7,17 +7,16 @@ import {upscaleGameCanvas} from "./upscaleGameCanvas";
 import {environment} from "./environment";
 import {make2dCanvasSink} from "../utils/browser/make2dCanvasSink";
 import {startMusic} from "../music";
-import {showLyrics} from "../showLyrics";
+import {dev, showLyrics} from "../showLyrics";
 import {mediaTexture} from "../mediaTexture";
 import {detectFaceForever} from "../faceDetection";
-import {elephants} from "../scenes/elephants";
-import {welcome} from "../scenes/welcome";
+import {koala} from "../scenes/koala";
 
 export let application: AsshatApplication;
 export let scene: Container;
 export let canvas: HTMLCanvasElement;
 
-function createNewScene() {
+export function createNewScene() {
     if (scene && !scene.destroyed)
         scene.destroy({ children: true });
     scene = application.stage.addChild(new Container());
@@ -43,9 +42,9 @@ export async function startGame()
     setTimeout(showLyrics);
     setTimeout(detectFaceForever)
     setTimeout(startMusic, 125);
-    // packing();
-    // elephants();
-    welcome();
+
+    // dev.doNotAutoGotoScene = true;
+    // koala();
 }
 
 export function makeFullMediaSprite() {

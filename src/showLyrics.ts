@@ -14,9 +14,14 @@ export async function showLyrics() {
     }
 }
 
-export async function executeLabel(start, end, text: string) {
+export const dev = {
+    doNotAutoGotoScene: false
+};
+
+async function executeLabel(start, end, text: string) {
     if (text.startsWith('>')) {
-        gotoScene(text.substring(1).trim());
+        if (!dev.doNotAutoGotoScene)
+            gotoScene(text.substring(1).trim());
         return;
     }
 
