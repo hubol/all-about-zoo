@@ -4,15 +4,27 @@ import {faceTexture} from "../mediaTexture";
 import {textures} from "../textures";
 import {now} from "../utils/now";
 import { range } from "../utils/range";
+import Color from "color";
 
 export function welcome() {
+    const background = new Graphics().withStep(() => {
+        background
+            .clear()
+            .beginFill(Color.hsv((now.s * 60) % 360, 255, 255).rgbNumber())
+            .drawRect(0, 0, canvas.width, canvas.height);
+    })
+
     const c0 = cylinder(5, 0x5AD3B9, 0xF2E98D).at(canvas.width * 0.7, canvas.height * 0.3);
     c0.scale.set((canvas.width * 0.6) / 40, (canvas.height * 0.2) / 40);
     const c1 = cylinder(2, 0x3ECAAA, 0xEFE575).at(canvas.width * 0.1, canvas.height * 0.5);
     c1.scale.set((canvas.width * 0.6) / 40, (canvas.height * 0.2) / 40);
     const c2 = cylinder().at(canvas.width * 0.3, canvas.height * 0.8);
     c2.scale.set((canvas.width * 0.5) / 32, (canvas.height * 0.4) / 32);
-    scene.addChild(c0, c1, c2);
+
+    const fg = new Container();
+    fg.addChild(c0, c1, c2);
+
+    scene.addChild(background, fg);
 
     range(30).forEach(i => {
         const character = makeCharacter(.2 + i * 0.01);
