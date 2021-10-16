@@ -1,34 +1,15 @@
-import {detectSingleFace, FaceDetection, nets, Rect, TinyFaceDetectorOptions, TinyYolov2SizeType} from "face-api.js";
-import {videoElement} from "./mediaTexture";
-import {loadWeightsAsArrayBuffer, weightsLoaderFactory} from "@tensorflow/tfjs-core/dist/io/weights_loader";
+import {detectSingleFace, FaceDetection, Rect, TinyFaceDetectorOptions, TinyYolov2SizeType} from "face-api.js";
+import {faceTexture, videoElement} from "./mediaTexture";
 import {sleep} from "./cutscene/sleep";
+import {Rectangle} from "pixi.js-legacy";
 
-export async function loadModel() {
-    const manifestJson = require('./face/tiny_face_detector_model-weights_manifest.json');
-    const weightUri = require('./face/tiny_face_detector_model-shard1.bin');
-
-    const fetchWeights = () =>
-        loadWeightsAsArrayBuffer([weightUri], { fetchFunc: fetch });
-    const loadWeights = weightsLoaderFactory(fetchWeights);
-
-    const weights = await loadWeights(manifestJson);
-    nets.tinyFaceDetector.loadFromWeightMap(weights as any);
-
-    try {
-        await detectSingleFace(videoElement, new TinyFaceDetectorOptions());
-    }
-    catch (e) {
-
-    }
-}
-
-export let face = new FaceDetection(1, new Rect(0, 0, 128, 128), { width: 128, height: 128 });
-export let flippedFace = new FaceDetection(1, new Rect(0, 0, 128, 128), { width: 128, height: 128 });
+export let face = new FaceDetection(1, new Rect(0, 0, 128, 128), {width: 128, height: 128});
+export let flippedFace = new FaceDetection(1, new Rect(0, 0, 128, 128), {width: 128, height: 128});
 
 async function detectFace() {
     if (!videoElement)
         return; // TODO
-    const options = new TinyFaceDetectorOptions({ inputSize: TinyYolov2SizeType.XS });
+    const options = new TinyFaceDetectorOptions({inputSize: TinyYolov2SizeType.XS});
     const singleFace = await detectSingleFace(videoElement, options);
     if (!singleFace)
         return;
@@ -37,6 +18,12 @@ async function detectFace() {
         singleFace.score,
         new Rect(1 - singleFace.relativeBox.x - singleFace.relativeBox.width, singleFace.relativeBox.y, singleFace.relativeBox.width, singleFace.relativeBox.height),
         singleFace.imageDims);
+    faceTexture.frame = new Rectangle(
+        Math.max(0, Math.min(singleFace.box.x, faceTexture.baseTexture.width - 2)),
+        Math.max(0, Math.min(singleFace.box.y, faceTexture.baseTexture.height - 2)),
+        Math.max(1, Math.min(singleFace.box.width, faceTexture.baseTexture.width - singleFace.box.x - 1)),
+        Math.max(1, Math.min(singleFace.box.height, faceTexture.baseTexture.height - singleFace.box.y - 1)));
+    faceTexture.updateUvs();
 }
 
 export async function detectFaceForever() {

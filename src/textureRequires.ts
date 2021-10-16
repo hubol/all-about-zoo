@@ -9,4 +9,6 @@ export const textureRequires = {
     Monkey: require('./images/monkey.png'),
     Elephant: require('./images/elephant.png'),
     Cloud: require('./images/cloud.png'),
+    FaceHole: require('./images/face hole.png'),
+    Shadow: require('./images/shadow.png'),
 };

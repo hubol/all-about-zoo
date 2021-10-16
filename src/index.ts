@@ -3,18 +3,17 @@ import "zone.js";
 Zone[Zone.__symbol__('ignoreConsoleErrorUncaughtError')] = true;
 
 import * as whatever from "@tensorflow/tfjs-backend-cpu";
-import * as PIXI from "pixi.js";
 import {handleIguaPromiseRejection} from "./utils/rejection";
 import {loadTextures} from "./textures";
 import {loadLabels} from "./loadLabels";
 import {loadMusic} from "./music";
 import {loadMediaTexture} from "./mediaTexture";
 import {showSection} from "./showSection";
-import {loadModel} from "./faceDetection";
 import {handlePromiseCancellation} from "./utils/pissant/cancellationToken";
+import {loadFaceDetectionModel} from "./loadFaceDetectionModel";
 
-(PIXI.settings as any).ROUND_PIXELS = true;
-PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
+// (PIXI.settings as any).ROUND_PIXELS = true;
+// PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 
 window.onload = initialize;
 
@@ -35,7 +34,7 @@ async function initialize() {
         await loadTextures();
         await loadMusic();
         await loadMediaTexture();
-        await loadModel();
+        await loadFaceDetectionModel();
         showSection('start');
         await pushStartButton();
         showSection('game');
