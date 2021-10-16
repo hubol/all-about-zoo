@@ -1,3 +1,4 @@
+0.700306	0.700306	>packing
 0.742927	2.312855	I packed a little lunch
 4.883075	6.317456	I put it in the box
 6.314025	7.285149	Saw your face
@@ -36,3 +37,14 @@
 120.810628	123.940188	This feels like a dream
 124.207848	127.282504	This feels like a dream
 127.653109	131.215043	This feels like a dream
+151.135465	151.135465	>welcome
+157.041316	159.704947	Welcome to the zoo
+162.746072	165.674302	These animals are for you
+169.195234	173.527603	But some of them will hide
+175.143421	179.877980	Or they will go inside
+181.511439	184.404389	Just imagine them in your mind
+194.056963	196.946385	Welcome to the zoo
+199.973398	202.901628	These animals are for you
+206.397864	210.359794	Except the ones that died
+212.508339	216.138638	Now they are in the sky
+218.848132	221.998626	Those animals can fly
