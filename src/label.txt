@@ -78,3 +78,47 @@
 323.692871	327.986432	Koala!
 329.955049	334.830728	Wake up!
 334.830728	338.736210	Koala!
+361.255356	364.033646	Please
+364.033646	368.623558	Can you take me to the
+368.623558	369.694302	Aquarium
+369.890106	373.049419	Please
+373.049419	376.067612	Tell me is it true
+376.067612	377.415303	That you
+378.232032	380.355881	Could kiss me and love me
+380.355881	383.589282	And hold me in front of all the fishies
+383.589282	385.665503	I love you, I need you
+385.669030	387.803463	Please tell me that you miss me
+387.801699	390.003163	I miss you, I want you
+390.003163	392.121720	And look at all these fishies
+392.123484	393.171296	Their eyes too
+393.171296	395.219293	They want you to want me
+395.602080	399.361151	In the lovely darkness
+399.601054	403.146682	We'd see a little clownfish
+403.296621	407.419075	But you'd never looked more serious
+408.214636	411.707344	Than when you told me your wish
+412.204790	414.069331	You said please
+414.069331	416.184360	Don't swim away from me
+416.861734	420.922448	Please don't migrate for the winter
+420.922448	422.453594	I'd miss you
+422.739361	424.554511	Like these fish do
+425.037845	429.301418	When they can't swim in the ocean blue at night
+429.301418	432.995221	There's a big bright wall of glass
+433.564991	436.837200	We would see the dolphins dance
+436.837200	441.150165	And you'd sweetly grab my hand
+441.624679	447.777490	And we'd waltz as children walked on past
+450.756875	450.756875	>elephants
+469.148275	473.268965	Look at those elephants!
+473.487700	477.347319	Look at those elephants!
+477.934729	482.083642	Have you ever seen an elephant like this?
+482.221234	484.962480	No I think you haven't
+489.802879	490.695460	Wow!
+492.828129	493.606050	Look at that one!
+493.905929	494.551551	And that one!
+504.114161	508.104315	Look at those elephants!
+508.298355	512.352013	Have you ever seen 'em have fun like this?
+512.574276	516.320999	Look at those elephants!
+517.047764	521.037918	Look at how they run around like this
+526.245228	527.084889	Look at that one!
+527.631727	528.270293	And that one!
+528.665428	529.413361	And that one!
+529.953143	533.488187	Look at those elephants!
