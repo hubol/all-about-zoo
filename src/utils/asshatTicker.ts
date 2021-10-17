@@ -19,8 +19,7 @@ export class AsshatTicker
 
     remove(fn: AsshatTickerFn): this
     {
-        if (fn)
-            fn._removed = true;
+        fn._removed = true;
         return this;
     }
 

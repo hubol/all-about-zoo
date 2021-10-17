@@ -4,6 +4,9 @@ type Predicate = () => boolean;
 
 export function wait(predicate: Predicate)
 {
+    if (predicate())
+        return Promise.resolve();
+
     let fn: () => void;
 
     const ticker = IguaZone.ticker;
@@ -11,8 +14,6 @@ export function wait(predicate: Predicate)
     const cancellationToken = IguaZone.cancellationToken;
 
     return new Promise<void>((resolve, reject) => {
-        if (predicate())
-            return resolve();
         fn = () => {
             if (cancellationToken?.isCancelled)
             {
