@@ -179,7 +179,7 @@ DisplayObject.prototype.withAsync = function (promiseFn) {
     const cancellationToken = new CancellationToken();
     const thisDisplayObject = this;
 
-    return doNowOrOnAdded(this, () => setTimeout(async () => {
+    return doNowOrOnAdded(this, async () => {
         try {
             await runInIguaZone(`${thisDisplayObject.constructor.name}.withAsync`, promiseFn, {
                 ticker: this.ticker,
@@ -190,7 +190,7 @@ DisplayObject.prototype.withAsync = function (promiseFn) {
         } finally {
             cancellationToken.cancel();
         }
-    }))
+    })
         .on("removed", () => cancellationToken.cancel());
 }
 
