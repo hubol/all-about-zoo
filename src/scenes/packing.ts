@@ -8,7 +8,7 @@ import {Container, filters, Sprite} from "pixi.js-legacy";
 import {textures} from "../textures";
 import {now} from "../utils/now";
 import {canvas, makeFullMediaSprite, scene} from "../igua/game";
-import {lyric} from "../showLyrics";
+import {lyric} from "../labels/showLyrics";
 import {mediaTexture} from "../mediaTexture";
 import {face} from "../faceDetection";
 import { lerp } from "../utils/math/number";

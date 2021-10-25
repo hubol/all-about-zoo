@@ -1,6 +1,6 @@
 import {Label} from "./loadLabels";
-import {wait} from "./cutscene/wait";
-import {music} from "./music";
+import {wait} from "../cutscene/wait";
+import {music} from "../music";
 
 export async function executeLabels(labels: Label[], fn: ({start, end, text}) => void | Promise<unknown>) {
     const lyrics = [...labels];

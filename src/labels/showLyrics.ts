@@ -1,5 +1,5 @@
-import {music} from "./music";
-import {wait} from "./cutscene/wait";
+import {music} from "../music";
+import {wait} from "../cutscene/wait";
 import {executeLabels} from "./executeLabels";
 import {lyrics} from "./loadLabels";
 

@@ -7,12 +7,12 @@ import {upscaleGameCanvas} from "./upscaleGameCanvas";
 import {environment} from "./environment";
 import {make2dCanvasSink} from "../utils/browser/make2dCanvasSink";
 import {startMusic} from "../music";
-import {showLyrics} from "../showLyrics";
+import {showLyrics} from "../labels/showLyrics";
 import {mediaTexture} from "../mediaTexture";
 import {detectFaceForever} from "../faceDetection";
 import {koala} from "../scenes/koala";
 import {elephants} from "../scenes/elephants";
-import {executeJumps} from "../executeJumps";
+import {executeJumps} from "../labels/executeJumps";
 
 export let application: AsshatApplication;
 export let scene: Container;

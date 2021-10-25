@@ -5,7 +5,7 @@ Zone[Zone.__symbol__('ignoreConsoleErrorUncaughtError')] = true;
 import * as whatever from "@tensorflow/tfjs-backend-cpu";
 import {handleIguaPromiseRejection} from "./utils/rejection";
 import {loadTextures} from "./textures";
-import {loadLabels} from "./loadLabels";
+import {loadLabels} from "./labels/loadLabels";
 import {loadMusic} from "./music";
 import {loadMediaTexture} from "./mediaTexture";
 import {showSection} from "./showSection";

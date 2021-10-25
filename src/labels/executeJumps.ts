@@ -1,8 +1,8 @@
-import {application} from "./igua/game";
+import {application} from "../igua/game";
 import {executeLabels} from "./executeLabels";
 import {jumps} from "./loadLabels";
-import {gotoScene} from "./igua/gotoScene";
-import {dev} from "./dev";
+import {gotoScene} from "../igua/gotoScene";
+import {dev} from "../dev";
 
 export async function executeJumps() {
     if (dev.doNotAutoGotoScene)

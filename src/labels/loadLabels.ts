@@ -1,14 +1,13 @@
-const labelPath = require('./label.txt');
+const labelPath = require('../label.txt');
 
 export type Label = [start: number, end: number, text: string];
-export let labels: Label[];
 export const lyrics: Label[] = [];
 export const jumps: Label[] = [];
 export const messages: Label[] = [];
 
 export async function loadLabels() {
     const labelText = await fetch(labelPath).then(x => x.text());
-    labels = labelText
+    const labels: Label[] = labelText
         .split(/\r\n|\n/)
         .map(x => x.split(/\t/).filter(x => x))
         .filter(x => x.length === 3)
