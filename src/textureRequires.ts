@@ -13,4 +13,8 @@ export const textureRequires = {
     Shadow: require('./images/shadow.png'),
     SleepingKoala: require('./images/sleeping koala.png'),
     Zed: require('./images/zed.png'),
+    Anemone: require('./images/anemone.png'),
+    BlueFish: require('./images/bluefish.png'),
+    ClownFish: require('./images/clownfish.png'),
+    StarFish: require('./images/starfish.png'),
 };
