@@ -7,10 +7,12 @@ import {upscaleGameCanvas} from "./upscaleGameCanvas";
 import {environment} from "./environment";
 import {make2dCanvasSink} from "../utils/browser/make2dCanvasSink";
 import {startMusic} from "../music";
-import {dev, showLyrics} from "../showLyrics";
+import {showLyrics} from "../showLyrics";
 import {mediaTexture} from "../mediaTexture";
 import {detectFaceForever} from "../faceDetection";
 import {koala} from "../scenes/koala";
+import {elephants} from "../scenes/elephants";
+import {executeJumps} from "../executeJumps";
 
 export let application: AsshatApplication;
 export let scene: Container;
@@ -40,11 +42,12 @@ export async function startGame()
     });
 
     setTimeout(showLyrics);
+    setTimeout(executeJumps);
     setTimeout(detectFaceForever)
     setTimeout(startMusic, 125);
 
     // dev.doNotAutoGotoScene = true;
-    // koala();
+    // elephants();
 }
 
 export function makeFullMediaSprite() {
