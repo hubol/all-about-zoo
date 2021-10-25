@@ -1,3 +1,4 @@
 export const dev = {
-    doNotAutoGotoScene: false
+    doNotAutoGotoScene: false,
+    fastForwardToScene: 'elephants',
 };
