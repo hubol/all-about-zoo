@@ -1,4 +1,3 @@
-import {application} from "../igua/game";
 import {executeLabels} from "./executeLabels";
 import {jumps} from "./loadLabels";
 import {gotoScene} from "../igua/gotoScene";

@@ -1,6 +1,7 @@
-0.700306	0.700306	>packing
 0.742927	2.312855	I packed a little lunch
+1.715504	1.715504	>packing
 4.883075	6.317456	I put it in the box
+5.939069	5.939069	!box
 6.314025	7.285149	Saw your face
 7.281718	9.189651	Now I have a little hunch
 11.578000	13.355535	That I never knew before

@@ -3,7 +3,7 @@ const labelPath = require('../label.txt');
 export type Label = [start: number, end: number, text: string];
 export const lyrics: Label[] = [];
 export const jumps: Label[] = [];
-export const messages: Label[] = [];
+export const messageLabels: Label[] = [];
 
 export async function loadLabels() {
     const labelText = await fetch(labelPath).then(x => x.text());
@@ -15,7 +15,7 @@ export async function loadLabels() {
     labels.forEach(([start, end, message]) => {
         let dest = lyrics;
         if (message.startsWith('!'))
-            dest = messages;
+            dest = messageLabels;
         else if (message.startsWith('>'))
             dest = jumps;
         message = dest === lyrics ? message : message.substring(1);

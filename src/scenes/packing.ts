@@ -13,6 +13,7 @@ import {mediaTexture} from "../mediaTexture";
 import {face} from "../faceDetection";
 import { lerp } from "../utils/math/number";
 import {wait} from "../cutscene/wait";
+import {message} from "../labels/broadcastMessages";
 
 export function packing() {
     const mediaSprite = makeFullMediaSprite();
@@ -69,7 +70,7 @@ export function packing() {
     })
 
     scene.withAsync(async () => {
-        await wait(() => lyric.indexOf('box') !== -1);
+        await message('box');
         const box = Sprite.from(textures.CardboardBox).at(canvas.width / 2, canvas.height / 2);
         box.scale.set(0, 0);
         box.anchor.set(0.5, 1);

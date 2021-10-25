@@ -13,6 +13,7 @@ import {detectFaceForever} from "../faceDetection";
 import {koala} from "../scenes/koala";
 import {elephants} from "../scenes/elephants";
 import {executeJumps} from "../labels/executeJumps";
+import {broadcastMessages} from "../labels/broadcastMessages";
 
 export let application: AsshatApplication;
 export let scene: Container;
@@ -43,6 +44,7 @@ export async function startGame()
 
     setTimeout(showLyrics);
     setTimeout(executeJumps);
+    setTimeout(broadcastMessages);
     setTimeout(detectFaceForever)
     setTimeout(startMusic, 125);
 
