@@ -52,11 +52,11 @@ export async function startGame()
     // elephants();
 }
 
-export function makeFullMediaSprite() {
+export function makeFullMediaSprite(container = scene) {
     const mediaSprite = Sprite.from(mediaTexture);
     mediaSprite.anchor.x = 1;
     mediaSprite.scale.x *= -1;
-    return scene.addChild(mediaSprite);
+    return container.addChild(mediaSprite);
 }
 
 function addGameCanvasToDocument(element: HTMLCanvasElement)
