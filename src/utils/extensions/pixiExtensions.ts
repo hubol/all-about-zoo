@@ -181,6 +181,11 @@ DisplayObject.prototype.withAsync = function (promiseFn) {
 
     return doNowOrOnAdded(this, async () => {
         try {
+            // @ts-ignore
+            if (thisDisplayObject._lazyTicker) {
+                // @ts-ignore
+                await new Promise(r => thisDisplayObject._lazyTicker._addReceiver(r));
+            }
             await runInIguaZone(`${thisDisplayObject.constructor.name}.withAsync`, promiseFn, {
                 ticker: this.ticker,
                 cancellationToken
