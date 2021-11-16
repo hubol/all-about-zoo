@@ -11,17 +11,10 @@ export async function loadMediaTexture() {
 }
 
 async function makeMediaTexture() {
-    try
-    {
-        videoElement = await makeUserMediaVideoElement();
-        const res = new VideoResource(videoElement);
-        const baseTexture = new BaseTexture(res, {mipmap: MIPMAP_MODES.OFF});
-        return new Texture(baseTexture);
-    }
-    catch (e) {
-        console.error(e);
-        return textures.Dummy;
-    }
+    videoElement = await makeUserMediaVideoElement();
+    const res = new VideoResource(videoElement);
+    const baseTexture = new BaseTexture(res, {mipmap: MIPMAP_MODES.OFF});
+    return new Texture(baseTexture);
 }
 
 async function makeUserMediaVideoElement() {

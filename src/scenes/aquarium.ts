@@ -5,9 +5,11 @@ import {BLEND_MODES, Container, Graphics, Sprite} from "pixi.js-legacy";
 import Color from "color";
 import {textures} from "../textures";
 import {range} from "../utils/range";
+import {approachLinear, lerp as lerpNumber} from "../utils/math/number";
 import {lyric} from "../labels/showLyrics";
 import {wait} from "../cutscene/wait";
 import {lerp} from "../cutscene/lerp";
+import {face} from "../faceDetection";
 
 export function aquarium() {
     const media = makeFullMediaSprite();
@@ -40,9 +42,51 @@ export function aquarium() {
         await lerp(blackout, 'alpha').to(0).over(500);
         blackout.destroy();
     });
+    range(8).forEach(() => fishes.addChild(bluefish().at(Math.random() * canvas.width, canvas.height)));
     blackout.blendMode = BLEND_MODES.MULTIPLY;
     blackout.alpha = 0;
     scene.addChild(blackout);
+}
+
+function bluefish() {
+    const sprite = Sprite.from(textures.BlueFish);
+    sprite.anchor.set(0.2, 0.5);
+    sprite.width = canvas.width / 8;
+    sprite.scale.y = sprite.scale.x;
+    const speed = (canvas.width / 256) * (0.5 + Math.random() * 0.5);
+    const seed = Math.random() * 80;
+    const mult = 1 + Math.random() * 2;
+    const depth = 32 + Math.random() * 48;
+    let hsp = 0;
+    let targetSign = 1;
+    sprite.withStep(() => {
+        let x = (face.box.left + face.box.right) / 2;
+
+        if (sprite.x < x) {
+            hsp += 0.15;
+        }
+        else {
+            hsp -= 0.15;
+        }
+
+        if (Math.abs(hsp) > speed * 4)
+            hsp = Math.sign(hsp) * speed * 4;
+
+        x = sprite.x + hsp;
+
+        const lastX = sprite.x;
+        sprite.moveTowards({ x, y: canvas.height * 0.7 + Math.abs(Math.sin(now.s * mult + seed)) * depth }, speed);
+        const diff = sprite.x - lastX;
+        if (diff < 0) {
+            targetSign = 1;
+        }
+        else
+            targetSign = -1;
+
+        const newSign = approachLinear(sprite.scale.x, sprite.scale.y * targetSign, sprite.scale.y / 8);
+        sprite.scale.x = newSign;
+    })
+    return sprite;
 }
 
 function animal(style = 'StarFish') {

@@ -17,4 +17,5 @@ export const textureRequires = {
     BlueFish: require('./images/bluefish.png'),
     ClownFish: require('./images/clownfish.png'),
     StarFish: require('./images/starfish.png'),
+    Panda: require('./images/panda.png'),
 };
