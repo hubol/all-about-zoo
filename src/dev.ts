@@ -1,4 +1,4 @@
 export const dev = {
     doNotAutoGotoScene: false,
-    fastForwardToScene: 'aquarium',
+    fastForwardToScene: undefined,
 };

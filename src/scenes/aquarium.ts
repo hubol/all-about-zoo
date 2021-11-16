@@ -38,17 +38,30 @@ export function aquarium() {
     const blackout = new Graphics().beginFill(0).drawRect(0, 0, canvas.width, canvas.height).withAsync(async () => {
         await wait(() => lyric.includes('darkness'));
         lerp(blackout, 'alpha').to(1).over(500);
+        await wait(() => lyric.includes('clownfish'));
+        const sprite = Sprite.from(textures.ClownFish);
+        sprite.width = canvas.width / 8;
+        sprite.scale.y = sprite.scale.x;
+        sprite.anchor.set(0.5, 0.5);
+        blackout.addChild(sprite.at(canvas.width / 2, canvas.height / 2));
         await wait(() => lyric.includes('serious'));
         await lerp(blackout, 'alpha').to(0).over(500);
         blackout.destroy();
     });
-    range(8).forEach(() => fishes.addChild(bluefish().at(Math.random() * canvas.width, canvas.height)));
+    scene.withAsync(async () => {
+        await wait(() => lyric.includes('away'));
+        fleeRef.flee = true;
+        await wait(() => lyric.includes('glass'));
+        fleeRef.flee = false;
+    })
+    const fleeRef = { flee: false };
+    range(8).forEach(i => fishes.addChild(bluefish(fleeRef, i === 0).at(Math.random() * canvas.width, canvas.height)));
     blackout.blendMode = BLEND_MODES.MULTIPLY;
     blackout.alpha = 0;
     scene.addChild(blackout);
 }
 
-function bluefish() {
+function bluefish(fleeRef, dontFlee) {
     const sprite = Sprite.from(textures.BlueFish);
     sprite.anchor.set(0.2, 0.5);
     sprite.width = canvas.width / 8;
@@ -57,10 +70,16 @@ function bluefish() {
     const seed = Math.random() * 80;
     const mult = 1 + Math.random() * 2;
     const depth = 32 + Math.random() * 48;
+    const fleeX = Math.random() > 0.5 ? -sprite.width * 2 : (canvas.width + sprite.width * 2);
     let hsp = 0;
     let targetSign = 1;
     sprite.withStep(() => {
         let x = (face.box.left + face.box.right) / 2;
+        let fleeing = false;
+        if (!dontFlee && fleeRef.flee) {
+            fleeing = true;
+            x = fleeX;
+        }
 
         if (sprite.x < x) {
             hsp += 0.15;
@@ -75,7 +94,7 @@ function bluefish() {
         x = sprite.x + hsp;
 
         const lastX = sprite.x;
-        sprite.moveTowards({ x, y: canvas.height * 0.7 + Math.abs(Math.sin(now.s * mult + seed)) * depth }, speed);
+        sprite.moveTowards({ x, y: canvas.height * 0.7 + Math.abs(Math.sin(now.s * mult + seed)) * depth }, fleeing ? speed * 2 : speed);
         const diff = sprite.x - lastX;
         if (diff < 0) {
             targetSign = 1;
