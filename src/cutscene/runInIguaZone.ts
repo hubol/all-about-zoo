@@ -1,6 +1,6 @@
-import {CancellationToken} from "pissant";
 import {AsshatTicker} from "../utils/asshatTicker";
-import {game} from "../igua/game";
+import {application} from "../igua/game";
+import {CancellationToken} from "../utils/pissant/cancellationToken";
 
 export type PromiseFn = () => Promise<unknown>;
 
@@ -21,6 +21,6 @@ export const IguaZone = {
         return Zone.current.get('cancellationToken');
     },
     get ticker(): AsshatTicker {
-        return Zone.current.get('ticker') ?? game.ticker;
+        return Zone.current.get('ticker') ?? application.stage.ticker;
     }
 }

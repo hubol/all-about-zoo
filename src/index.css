@@ -121,3 +121,37 @@ noscript {
         filter: drop-shadow(1vh 1vh #CC535C);
     }
 }
+
+.shake {
+    animation: shake 1s infinite alternate-reverse;
+}
+
+@keyframes shake {
+    0% {
+        transform: translate(-0.05em, 0.05em);
+    }
+    12% {
+        transform: translate(0.05em, -0.05em);
+    }
+    25% {
+        transform: translate(-0.05em, 0.05em);
+    }
+    37% {
+        transform: translate(-0.05em, -0.05em);
+    }
+    50% {
+        transform: translate(0.05em, 0.05em);
+    }
+    62% {
+        transform: translate(-0.05em, -0.05em);
+    }
+    75% {
+        transform: translate(0.05em, 0.05em);
+    }
+    87% {
+        transform: translate(-0.05em, 0.05em);
+    }
+    100% {
+        transform: translate(0.05em, -0.05em);
+    }
+}

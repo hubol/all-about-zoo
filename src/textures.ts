@@ -1,4 +1,4 @@
-import {Loader, Texture} from "pixi.js-legacy";
+import {Loader, SCALE_MODES, Texture} from "pixi.js-legacy";
 import {textureRequires} from "./textureRequires";
 
 type Key = keyof typeof textureRequires;
@@ -11,6 +11,7 @@ export function loadTextures() {
            Object.entries(textureRequires).forEach(([key, path]) => {
               textures[key] = resources[path]?.texture;
            });
+           textures.Shadow.defaultAnchor.set(0.5);
            resolve();
        })
     });

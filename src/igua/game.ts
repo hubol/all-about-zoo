@@ -2,45 +2,61 @@ import {Container} from "pixi.js";
 import {Sprite} from "pixi.js-legacy";
 import {AsshatTicker} from "../utils/asshatTicker";
 import {advanceKeyListener, startKeyListener} from "../utils/browser/key";
-import {createApplication} from "../utils/pixi/createApplication";
+import {AsshatApplication, createApplication} from "../utils/pixi/createApplication";
 import {upscaleGameCanvas} from "./upscaleGameCanvas";
 import {environment} from "./environment";
 import {make2dCanvasSink} from "../utils/browser/make2dCanvasSink";
-import {packing} from "../scenes/packing";
-import {music} from "../music";
-import {showLyrics} from "../showLyrics";
+import {startMusic} from "../music";
+import {showLyrics} from "../labels/showLyrics";
 import {mediaTexture} from "../mediaTexture";
+import {detectFaceForever} from "../faceDetection";
+import {koala} from "../scenes/koala";
+import {elephants} from "../scenes/elephants";
+import {executeJumps} from "../labels/executeJumps";
+import {broadcastMessages} from "../labels/broadcastMessages";
 
+export let application: AsshatApplication;
 export let scene: Container;
 export let canvas: HTMLCanvasElement;
 
+export function createNewScene() {
+    if (scene && !scene.destroyed)
+        scene.destroy({ children: true });
+    scene = application.stage.addChild(new Container());
+}
+
 export async function startGame()
 {
-    const application = createApplication({width: mediaTexture.width, height: mediaTexture.height, targetFps: 60, showCursor: false});
+    application = createApplication({width: mediaTexture.width, height: mediaTexture.height, targetFps: 60, showCursor: false});
     upscaleGameCanvas(addGameCanvasToDocument(application.canvasElement));
 
     application.ticker.start();
     application.stage.withTicker(new AsshatTicker());
-    scene = application.stage;
+    createNewScene();
     canvas = application.canvasElement;
 
     startKeyListener();
 
     application.ticker.add(() => {
         advanceKeyListener();
-        scene.ticker.update();
+        application.stage.ticker.update();
     });
 
-    await music.play();
     setTimeout(showLyrics);
-    packing();
+    setTimeout(executeJumps);
+    setTimeout(broadcastMessages);
+    setTimeout(detectFaceForever)
+    setTimeout(startMusic, 125);
+
+    // dev.doNotAutoGotoScene = true;
+    // elephants();
 }
 
-export function makeFullMediaSprite() {
+export function makeFullMediaSprite(container = scene) {
     const mediaSprite = Sprite.from(mediaTexture);
     mediaSprite.anchor.x = 1;
     mediaSprite.scale.x *= -1;
-    return scene.addChild(mediaSprite);
+    return container.addChild(mediaSprite);
 }
 
 function addGameCanvasToDocument(element: HTMLCanvasElement)

@@ -1,3 +1,7 @@
+import {wait} from "./cutscene/wait";
+import {dev} from "./dev";
+import {fastForwardToScene} from "./labels/fastForwardToScene";
+
 export let music: HTMLAudioElement;
 
 export async function loadMusic() {
@@ -5,4 +9,19 @@ export async function loadMusic() {
     audio.load();
     await new Promise<void>(resolve => audio.addEventListener('canplaythrough', () => resolve()));
     music = audio;
+    // @ts-ignore
+    window.music = music;
+}
+
+export async function startMusic() {
+    await wait(() => !!music);
+    await music.play();
+    if (dev.fastForwardToScene)
+        fastForwardToScene(dev.fastForwardToScene);
+    document.addEventListener('visibilitychange', async () => {
+        if (document.visibilityState === 'visible')
+            await music.play();
+        else
+            await music.pause();
+    })
 }

@@ -1,9 +1,9 @@
 import {moveTowards, Vector} from "../math/vector";
-import {CancellationToken} from "pissant";
 import {areRectanglesOverlapping, normalizeRectangle, Rectangle, rectangle as createRectangle} from "../math/rectangle";
 import {AsshatTicker} from "../asshatTicker";
 import {PromiseFn, runInIguaZone} from "../../cutscene/runInIguaZone";
 import {DisplayObject, Container, SCALE_MODES, Transform} from "pixi.js-legacy";
+import {CancellationToken} from "../pissant/cancellationToken";
 
 declare module "@pixi/display" {
     interface DisplayObject {
@@ -179,8 +179,13 @@ DisplayObject.prototype.withAsync = function (promiseFn) {
     const cancellationToken = new CancellationToken();
     const thisDisplayObject = this;
 
-    return doNowOrOnAdded(this, () => setTimeout(async () => {
+    return doNowOrOnAdded(this, async () => {
         try {
+            // @ts-ignore
+            if (thisDisplayObject._lazyTicker) {
+                // @ts-ignore
+                await new Promise(r => thisDisplayObject._lazyTicker._addReceiver(r));
+            }
             await runInIguaZone(`${thisDisplayObject.constructor.name}.withAsync`, promiseFn, {
                 ticker: this.ticker,
                 cancellationToken
@@ -190,7 +195,7 @@ DisplayObject.prototype.withAsync = function (promiseFn) {
         } finally {
             cancellationToken.cancel();
         }
-    }))
+    })
         .on("removed", () => cancellationToken.cancel());
 }
 
