@@ -1,4 +1,3 @@
-import {wait} from "./cutscene/wait";
 import {dev} from "./dev";
 import {fastForwardToScene} from "./labels/fastForwardToScene";
 
@@ -14,7 +13,6 @@ export async function loadMusic() {
 }
 
 export async function startMusic() {
-    await wait(() => !!music);
     await music.play();
     if (dev.fastForwardToScene)
         fastForwardToScene(dev.fastForwardToScene);

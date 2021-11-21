@@ -6,7 +6,7 @@ import * as whatever from "@tensorflow/tfjs-backend-cpu";
 import {handleIguaPromiseRejection} from "./utils/rejection";
 import {loadTextures} from "./textures";
 import {loadLabels} from "./labels/loadLabels";
-import {loadMusic} from "./music";
+import {loadMusic, startMusic} from "./music";
 import {loadMediaTexture} from "./mediaTexture";
 import {showSection} from "./showSection";
 import {handlePromiseCancellation} from "./utils/pissant/cancellationToken";
@@ -23,7 +23,10 @@ window.addEventListener("unhandledrejection", handlePromiseCancellation);
 function pushStartButton()
 {
     return new Promise<void>(resolve =>
-        document.getElementById('start_button')!.onclick = () => resolve())
+        document.getElementById('start_button')!.onclick = () => {
+            setTimeout(startMusic, 125);
+            resolve();
+        })
 }
 
 async function initialize() {

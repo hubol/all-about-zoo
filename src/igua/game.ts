@@ -46,7 +46,6 @@ export async function startGame()
     setTimeout(executeJumps);
     setTimeout(broadcastMessages);
     setTimeout(detectFaceForever)
-    setTimeout(startMusic, 125);
 
     // dev.doNotAutoGotoScene = true;
     // elephants();
