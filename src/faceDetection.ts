@@ -1,4 +1,4 @@
-import {detectSingleFace, FaceDetection, Rect, TinyFaceDetectorOptions, TinyYolov2SizeType} from "face-api.js";
+import {detectSingleFace, FaceDetection, Rect, TinyFaceDetectorOptions} from "@vladmandic/face-api";
 import {faceTexture, videoElement} from "./mediaTexture";
 import {sleep} from "./cutscene/sleep";
 import {Rectangle} from "pixi.js-legacy";
@@ -9,7 +9,7 @@ export let flippedFace = new FaceDetection(1, new Rect(0, 0, 128, 128), {width: 
 async function detectFace() {
     if (!videoElement)
         return; // TODO
-    const options = new TinyFaceDetectorOptions({inputSize: TinyYolov2SizeType.XS});
+    const options = new TinyFaceDetectorOptions({inputSize: 192});
     const singleFace = await detectSingleFace(videoElement, options);
     if (!singleFace)
         return;
@@ -29,6 +29,6 @@ async function detectFace() {
 export async function detectFaceForever() {
     while (true) {
         await detectFace();
-        await sleep(125);
+        await sleep(82);
     }
 }

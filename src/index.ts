@@ -2,7 +2,7 @@ import "zone.js";
 
 Zone[Zone.__symbol__('ignoreConsoleErrorUncaughtError')] = true;
 
-import * as whatever from "@tensorflow/tfjs-backend-cpu";
+import "@vladmandic/face-api";
 import {handleIguaPromiseRejection} from "./utils/rejection";
 import {loadTextures} from "./textures";
 import {loadLabels} from "./labels/loadLabels";
