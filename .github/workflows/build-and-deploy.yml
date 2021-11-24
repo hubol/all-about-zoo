@@ -12,7 +12,6 @@ jobs:
         with:
           node-version: '14'
           cache: 'npm'
-          cache-dependency-path: subdir/package-lock.json
       - run: npm install
       - run: npm build
       - uses: josephbmanley/butler-publish-itchio-action@master
