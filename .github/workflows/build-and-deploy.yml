@@ -1,0 +1,24 @@
+name: Build and push
+on:
+  push:
+    branches: [main]
+jobs:
+  build-and-push:
+    name: 🍆
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+          cache: 'npm'
+          cache-dependency-path: subdir/package-lock.json
+      - run: npm install
+      - run: npm build
+      - uses: josephbmanley/butler-publish-itchio-action@master
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+          CHANNEL: html5
+          ITCH_GAME: all-about-zoo
+          ITCH_USER: hubol
+          PACKAGE: dist
