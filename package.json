@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "serve": "parcel src/index.html --open",
-    "build": "parcel build --public-url ./ src/index.html"
+    "build": "parcel build --public-url ./ src/index.html && node -e \"require('fs').rename('dist/all-about-zoo.html', 'dist/index.html', () => {})\""
   },
   "keywords": [],
   "author": "",
