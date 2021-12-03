@@ -27,8 +27,8 @@ function pushStartButton()
 {
     return new Promise<void>(resolve =>
         document.getElementById('start_button')!.onclick = () => {
-            setTimeout(startMusic, 125);
             resolve();
+            startMusic();
         })
 }
 
