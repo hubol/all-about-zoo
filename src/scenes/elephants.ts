@@ -36,7 +36,7 @@ export function elephants() {
         sky
             .clear()
             .beginFill(0xA3C9F7)
-            .drawRect(0, 0, canvas.width, canvas.height)
+            .drawRect(-canvas.width, -canvas.height, canvas.width * 2, canvas.height * 2)
             .beginHole()
             .drawCircle(center.x, center.y, radius);
 
