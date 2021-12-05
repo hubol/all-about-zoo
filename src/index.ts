@@ -12,6 +12,7 @@ import {showSection} from "./showSection";
 import {handlePromiseCancellation} from "./utils/pissant/cancellationToken";
 import {loadFaceDetectionModel} from "./loadFaceDetectionModel";
 import {log} from "./log";
+import {detectFaceForever} from "./faceDetection";
 
 // (PIXI.settings as any).ROUND_PIXELS = true;
 // PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
@@ -46,6 +47,7 @@ async function initialize() {
         await loadMediaTexture();
         log(5, "load face detection model");
         await loadFaceDetectionModel();
+        setTimeout(detectFaceForever);
         showSection('start');
         log(6, "wait for push start");
         await pushStartButton();

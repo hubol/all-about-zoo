@@ -45,10 +45,6 @@ export async function startGame()
     setTimeout(showLyrics);
     setTimeout(executeJumps);
     setTimeout(broadcastMessages);
-    setTimeout(detectFaceForever)
-
-    // dev.doNotAutoGotoScene = true;
-    // elephants();
 }
 
 export function makeFullMediaSprite(container = scene) {

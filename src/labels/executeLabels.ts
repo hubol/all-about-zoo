@@ -8,7 +8,7 @@ export async function executeLabels(labels: Label[], fn: ({start, end, text}) =>
         const [start, end, text] = lyrics.shift()!;
         await wait(() => music.currentTime >= start);
         const result = fn({start, end, text});
-        if (result instanceof Promise)
+        if (result)
             await result;
     }
 }

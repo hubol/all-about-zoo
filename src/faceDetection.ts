@@ -1,6 +1,5 @@
 import {detectSingleFace, FaceDetection, Rect, TinyFaceDetectorOptions} from "@vladmandic/face-api";
 import {faceTexture, videoElement} from "./mediaTexture";
-import {sleep} from "./cutscene/sleep";
 import {Rectangle} from "pixi.js-legacy";
 
 export let face = new FaceDetection(1, new Rect(0, 0, 128, 128), {width: 128, height: 128});
@@ -24,6 +23,10 @@ async function detectFace() {
         Math.max(1, Math.min(singleFace.box.width, faceTexture.baseTexture.width - singleFace.box.x - 1)),
         Math.max(1, Math.min(singleFace.box.height, faceTexture.baseTexture.height - singleFace.box.y - 1)));
     faceTexture.updateUvs();
+}
+
+function sleep(ms) {
+    return new Promise<void>(r => setTimeout(r, ms));
 }
 
 export async function detectFaceForever() {
