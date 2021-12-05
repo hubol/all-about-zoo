@@ -8,6 +8,8 @@ import {Container, Graphics, Sprite } from "pixi.js-legacy";
 import {face} from "../faceDetection";
 import {distance} from "../utils/math/vector";
 import {now} from "../utils/now";
+import {message} from "../labels/broadcastMessages";
+import {music} from "../music";
 
 export function elephants() {
     makeFullMediaSprite();
@@ -54,6 +56,12 @@ export function elephants() {
         });
     });
 
+    scene.withAsync(async () => {
+        await message('end');
+        music.muted = true;
+        window.location.href = 'https://hubol.bandcamp.com/album/all-about-zoo';
+    })
+
     function terrain(x) {
         return canvas.height * .75 + Math.sin(x * .005) * Math.cos(x * .04 + 3) * 32;
     }
@@ -88,6 +96,7 @@ export function elephants() {
     earth.lineTo(0, scene.height)
 
     clouds.filters = [ new DropShadowFilter({ distance: 8, blur: 8, quality: 5, color: 0x21357A }) ];
+    // @ts-ignore
     clouds.addChild(...sprites);
 
     const foreground = new Container();

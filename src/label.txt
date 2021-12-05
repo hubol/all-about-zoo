@@ -38,7 +38,7 @@
 120.810628	123.940188	This feels like a dream
 124.207848	127.282504	This feels like a dream
 127.653109	131.215043	This feels like a dream
-151.135465	151.135465	>welcome
+152.582711	152.582711	>welcome
 157.041316	159.704947	Welcome to the zoo
 162.746072	165.674302	These animals are for you
 169.195234	173.527603	But some of them will hide
@@ -124,3 +124,4 @@
 527.631727	528.270293	And that one!
 528.665428	529.413361	And that one!
 529.953143	533.488187	Look at those elephants!
+545.031763	545.031763	!end

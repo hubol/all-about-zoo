@@ -9,8 +9,6 @@ export async function loadMusic() {
     audio.load();
     await new Promise<void>(resolve => audio.addEventListener('canplaythrough', () => resolve()));
     music = audio;
-    // @ts-ignore
-    window.music = music;
 }
 
 export async function startMusic() {

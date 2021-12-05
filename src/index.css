@@ -3,6 +3,77 @@
     padding: 0;
 }
 
+body {
+    background-color: #E2889B;
+}
+
+.packing #game_canvas {
+    background-color: #E8E06B;
+    border: solid 3vmin #E8E06B;
+}
+
+.packing #lyrics {
+    -webkit-text-stroke: 0.025em black;
+    -webkit-text-fill-color: white;
+}
+
+.welcome body {
+    background-image: linear-gradient(#CDA1E0, #FFBD8C);
+}
+
+.welcome #game_canvas {
+    border-radius: 3vmin;
+    background-color: #B7E875;
+    border: solid 3vmin #B7E875;
+}
+
+.welcome #lyrics {
+    -webkit-text-stroke: 0.025em #BC6475;
+    -webkit-text-fill-color: #FFFE93;
+}
+
+.koala body {
+    background-color: #8BB7E5;
+}
+
+.koala #game_canvas {
+    box-shadow: #29594A 0 0 8vmin;
+}
+
+.koala #lyrics {
+    font-weight: 600;
+    text-shadow: #000000A0 0.05em 0.05em 0.05em;
+    -webkit-text-fill-color: #D66290;
+}
+
+.aquarium body {
+    background-color: #BAEEFF;
+}
+
+.aquarium #game_canvas {
+    border-radius: 4vmin;
+    box-shadow: #00000080 0.3vmin 0.3vmin 4vmin;
+}
+
+.aquarium #lyrics {
+    font-weight: 600;
+    text-shadow: #00000080 0.05em 0.05em 0.1em;
+    -webkit-text-fill-color: #FF75CA;
+}
+
+.elephants body {
+    background-color: #FFDF7F;
+}
+
+.elephants #game_canvas {
+    border-radius: 999px 999px 10vmin 10vmin;
+}
+
+.elephants #lyrics {
+    font-weight: 600;
+    -webkit-text-fill-color: #A00000;
+}
+
 html {
     font-family: sans-serif;
     height: 100%;
@@ -13,7 +84,6 @@ html {
     /* see: http://jsfiddle.net/namuol/VAXrL/1459/ */
     image-rendering: -moz-crisp-edges;
     image-rendering: pixelated;
-    border: solid 3vmin #E8E06B;
     margin-bottom: 3vmin;
 }
 
@@ -47,7 +117,6 @@ html {
 }
 
 body {
-    background-color: #E2889B;
     height: 100%;
 }
 
@@ -71,9 +140,6 @@ noscript {
     text-align: center;
     z-index: 100;
     font-size: 9vmin;
-    color: white;
-    -webkit-text-stroke: 0.025em black;
-    -webkit-text-fill-color: white;
 }
 
 #lyrics_container {
