@@ -153,10 +153,12 @@ noscript {
     display: none;
 }
 
-#loading img {
-    max-width: 90vw;
-    height: 40vh;
-    animation: loading 1s infinite steps(2);
+#loading h1:first-child {
+    display: inline-block;
+    background-color: #CC535C;
+    border-radius: 9999px;
+    padding: 0.2em 0.5em 0.3em;
+    animation: loading 0.5s infinite;
     transform-origin: bottom;
 }
 
@@ -171,20 +173,16 @@ noscript {
 
 @keyframes loading {
     0% {
-        transform: translate(-1vh, 0) rotate(3deg);
-        filter: drop-shadow(1vh 1vh #CC535C);
+        transform: translate(-0.1em, 0) rotate(3deg);
     }
     25% {
-        transform: translate(0, 1vh) rotate(-1deg);
-        filter: drop-shadow(1vh 1vh #CC535C);
+        transform: translate(0, 0.1em) rotate(-1deg);
     }
     50% {
-        transform: translate(0, 1vh) scale(1.2, 0.8) rotate(1deg);
-        filter: drop-shadow(1.5vh 1.5vh #CC535C);
+        transform: translate(0, 0.1em) scale(1.2, 0.8) rotate(1deg);
     }
     75% {
-        transform: translate(1vh, -2vh) scale(0.95, 1.05) rotate(-1deg);
-        filter: drop-shadow(1vh 1vh #CC535C);
+        transform: translate(0.1em, -0.2em) scale(0.95, 1.05) rotate(-1deg);
     }
 }
 
